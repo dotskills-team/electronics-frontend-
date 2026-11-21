@@ -10,9 +10,13 @@ export interface ProductMutationPayload {
   salePrice?: number;
   reorderLevel?: number;
   sellByWeight: boolean;
+  /** `null` (not undefined) so an Edit can explicitly clear an existing warranty; the backend treats null/0 as "no warranty". */
+  warrantyMonths: number | null;
+  warrantyType: "WARRANTY" | "GUARANTEE" | null;
 }
 
 export function toProductPayload(values: ProductFormValues): ProductMutationPayload {
+  const warrantyMonths = values.warrantyMonths ? Number(values.warrantyMonths) : 0;
   return {
     sku: values.sku.trim(),
     name: values.name.trim(),
@@ -23,5 +27,7 @@ export function toProductPayload(values: ProductFormValues): ProductMutationPayl
     salePrice: values.salePrice ? Number(values.salePrice) : undefined,
     reorderLevel: values.reorderLevel ? Number(values.reorderLevel) : undefined,
     sellByWeight: values.sellByWeight,
+    warrantyMonths: warrantyMonths > 0 ? warrantyMonths : null,
+    warrantyType: warrantyMonths > 0 ? (values.warrantyType ?? "WARRANTY") : null,
   };
 }

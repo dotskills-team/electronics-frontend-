@@ -61,7 +61,7 @@ export default function EditPurchaseOrderPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PURCHASE_ORDER_UPDATE} fallback={<PermissionDenied />}>
       <PageHeader title={order ? t("detail.editTitle") : t("title")} description={order?.orderNumber} />
 
-      <div className="mx-auto max-w-3xl p-6">
+      <div className="mx-auto max-w-3xl p-3 sm:p-4">
         {!companyId || isLoading || !suppliers || !locations || !products ? (
           <Skeleton className="h-96 w-full" />
         ) : error ? (

@@ -63,7 +63,7 @@ export default function CompanyPaymentDetailsPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PAYMENT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={payment?.invoice.invoiceNumber ?? t("details.overview")} description={t("details.overview")} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         <div className="flex items-center justify-between">
           <Button variant="ghost" size="sm" onClick={() => router.push("/company/payments")}>
             <ArrowLeft aria-hidden="true" />

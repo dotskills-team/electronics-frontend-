@@ -34,7 +34,7 @@ export default function CompanyDetailsPage() {
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.COMPANY_READ} fallback={<PermissionDenied />}>
       <PageHeader title={displayName ?? t("details.overview")} description={company?.code} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         <Button variant="ghost" size="sm" onClick={() => router.push("/platform/companies")}>
           <ArrowLeft aria-hidden="true" />
           {t("details.backToList")}

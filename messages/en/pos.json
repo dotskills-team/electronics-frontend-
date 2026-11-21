@@ -24,7 +24,15 @@
       "increase": "Increase quantity",
       "remove": "Remove",
       "serialNotePlaceholder": "Serial/IMEI (optional)",
-      "baseUnitOption": "Base unit"
+      "baseUnitOption": "Base unit",
+      "warrantyMonthsLabel": "Warranty months",
+      "warrantyMonths": "months warranty",
+      "guaranteeMonths": "months guarantee",
+      "noWarranty": "no warranty",
+      "monthsShort": "mo",
+      "unitPriceShort": "Price",
+      "discountShort": "Disc.",
+      "serialShort": "Serial/IMEI"
     },
     "summary": {
       "subtotal": "Subtotal",
@@ -54,7 +62,8 @@
       "total": "Total",
       "entered": "Entered",
       "remaining": "Remaining",
-      "fillRemaining": "Fill remaining"
+      "fillRemaining": "Fill remaining",
+      "fillShort": "Fill"
     },
     "dueLimitDialog": {
       "title": "Due limit will be exceeded",
@@ -73,6 +82,48 @@
       "pendingTitle": "Waiting to sync",
       "pendingCount": "{count} sale(s) saved on this device, waiting to sync.",
       "syncSuccess": "{count} sale(s) synced successfully."
+    },
+    "insights": {
+      "groupLabel": "Stock and sales shortcuts",
+      "lowStock": "Low stock",
+      "lowStockHint": "{count} to restock",
+      "lowStockAllGood": "All stocked up",
+      "totalStock": "Total stock",
+      "totalStockHint": "{count, plural, one {# item} other {# items}}",
+      "topSelling": "Top selling",
+      "topSellingHint": "Best sellers",
+      "stock": {
+        "lowTitle": "Low stock",
+        "allTitle": "Total stock",
+        "description": "Stock at {location}",
+        "chipItems": "{count, plural, one {# item} other {# items}}",
+        "chipLow": "{count} low",
+        "chipOut": "{count} out of stock",
+        "searchPlaceholder": "Search product, SKU or barcode",
+        "sku": "SKU {sku}",
+        "low": "Low stock",
+        "outOfStock": "Out of stock",
+        "reorderAt": "Reorder at {level}",
+        "empty": "No products found at this location.",
+        "emptyLow": "Nothing is running low. Every item is above its reorder level.",
+        "emptySearch": "No product matches \"{term}\".",
+        "pageOf": "Page {page} of {totalPages}",
+        "totalResults": "{count, plural, one {# result} other {# results}}",
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "top": {
+        "title": "Top selling products",
+        "description": "Best sellers at {location}, by quantity sold",
+        "periods": {
+          "today": "Today",
+          "last7Days": "Last 7 days",
+          "thisMonth": "This month"
+        },
+        "rank": "Rank {rank}",
+        "sales": "{count, plural, one {# sale} other {# sales}}",
+        "empty": "No sales in this period yet."
+      }
     }
   }
 }

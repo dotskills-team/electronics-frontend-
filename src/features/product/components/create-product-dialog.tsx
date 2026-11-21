@@ -34,6 +34,8 @@ const EMPTY_VALUES: ProductFormValues = {
   salePrice: "",
   reorderLevel: "",
   sellByWeight: false,
+  warrantyMonths: "",
+  warrantyType: "WARRANTY",
 };
 
 export function CreateProductDialog({

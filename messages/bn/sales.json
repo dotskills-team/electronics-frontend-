@@ -81,6 +81,9 @@
       "tax": "ট্যাক্স",
       "total": "সর্বমোট",
       "paymentsTitle": "পেমেন্ট",
+      "warrantyLabel": "ওয়ারেন্টি",
+      "guaranteeLabel": "গ্যারান্টি",
+      "warrantyLine": "{type}: {months} মাস, মেয়াদ {date} পর্যন্ত",
       "thankYou": "কেনাকাটার জন্য ধন্যবাদ।"
     }
   }

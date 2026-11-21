@@ -129,7 +129,7 @@ export default function NewStockAdjustmentPage() {
     return (
       <CompanyPermissionGate permission={COMPANY_PERMISSIONS.STOCK_ADJUSTMENT_CREATE} fallback={<PermissionDenied />}>
         <PageHeader title={t("newAdjustment")} description={t("description")} />
-        <div className="mx-auto max-w-4xl p-6">
+        <div className="mx-auto max-w-4xl p-3 sm:p-4">
           <Skeleton className="h-96 w-full" />
         </div>
       </CompanyPermissionGate>
@@ -140,7 +140,7 @@ export default function NewStockAdjustmentPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.STOCK_ADJUSTMENT_CREATE} fallback={<PermissionDenied />}>
       <PageHeader title={t("newAdjustment")} description={t("description")} />
 
-      <div className="mx-auto max-w-4xl space-y-6 p-6">
+      <div className="mx-auto max-w-4xl space-y-3 p-3 sm:space-y-4 sm:p-4">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4" noValidate>
             {fields.map((field, index) => {

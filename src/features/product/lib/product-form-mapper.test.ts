@@ -27,7 +27,63 @@ describe("toProductPayload", () => {
       salePrice: undefined,
       reorderLevel: undefined,
       sellByWeight: false,
+      warrantyMonths: null,
+      warrantyType: null,
     });
+  });
+
+  it("sends warranty months and type when months > 0", () => {
+    const payload = toProductPayload({
+      sku: "PHONE",
+      name: "Phone",
+      categoryId: "",
+      baseUnitId,
+      barcode: "",
+      costPrice: "",
+      salePrice: "",
+      reorderLevel: "",
+      sellByWeight: false,
+      warrantyMonths: "12",
+      warrantyType: "GUARANTEE",
+    });
+    expect(payload.warrantyMonths).toBe(12);
+    expect(payload.warrantyType).toBe("GUARANTEE");
+  });
+
+  it("defaults the type to WARRANTY when months > 0 and no type is chosen", () => {
+    const payload = toProductPayload({
+      sku: "PHONE",
+      name: "Phone",
+      categoryId: "",
+      baseUnitId,
+      barcode: "",
+      costPrice: "",
+      salePrice: "",
+      reorderLevel: "",
+      sellByWeight: false,
+      warrantyMonths: "6",
+    });
+    expect(payload.warrantyType).toBe("WARRANTY");
+  });
+
+  it("clears the warranty (null/null) when months is empty or 0, even if a type is set", () => {
+    for (const warrantyMonths of ["", "0"]) {
+      const payload = toProductPayload({
+        sku: "PHONE",
+        name: "Phone",
+        categoryId: "",
+        baseUnitId,
+        barcode: "",
+        costPrice: "",
+        salePrice: "",
+        reorderLevel: "",
+        sellByWeight: false,
+        warrantyMonths,
+        warrantyType: "GUARANTEE",
+      });
+      expect(payload.warrantyMonths).toBeNull();
+      expect(payload.warrantyType).toBeNull();
+    }
   });
 
   it("converts price strings to numbers", () => {

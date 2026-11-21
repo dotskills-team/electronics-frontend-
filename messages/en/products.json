@@ -70,7 +70,14 @@
       "reorderLevelDescription": "You'll be alerted when stock falls below this amount.",
       "pricePositive": "Must be zero or a positive number.",
       "sellByWeight": "Sold by weight",
-      "sellByWeightDescription": "Turn on for items sold by weight, like rice or vegetables, instead of by piece."
+      "sellByWeightDescription": "Turn on for items sold by weight, like rice or vegetables, instead of by piece.",
+      "warrantyMonths": "Warranty / guarantee (months)",
+      "warrantyMonthsPlaceholder": "e.g. 12",
+      "warrantyMonthsDescription": "Leave empty for no warranty. Applied automatically when this product is sold; you can change it per sale.",
+      "warrantyMonthsInvalid": "Enter a whole number of months from 0 to 240.",
+      "warrantyType": "Type",
+      "warrantyTypeWarranty": "Warranty",
+      "warrantyTypeGuarantee": "Guarantee"
     },
     "bulkImport": {
       "trigger": "Bulk import",

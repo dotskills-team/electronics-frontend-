@@ -33,7 +33,7 @@ export default function PlatformPermissionsPage() {
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.ROLE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("permissionsPage.title")} description={t("permissionsPage.description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         {isLoading ? (
           <Skeleton className="h-40 w-full" />
         ) : error ? (

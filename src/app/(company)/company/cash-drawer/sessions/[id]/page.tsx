@@ -68,7 +68,7 @@ export default function CashDrawerSessionDetailPage() {
         }
       />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         {!companyId || isLoading ? (
           <Skeleton className="h-64 w-full" />
         ) : error ? (

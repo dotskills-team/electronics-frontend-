@@ -60,7 +60,7 @@ export default function PlatformPaymentDetailsPage() {
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.PAYMENT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={payment?.invoice.invoiceNumber ?? t("details.overview")} description={t("details.overview")} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         <Button variant="ghost" size="sm" onClick={() => router.push("/platform/payments")}>
           <ArrowLeft aria-hidden="true" />
           {t("details.backToList")}

@@ -17,11 +17,11 @@ export function DataTablePagination({ page, totalPages, total, onPageChange }: D
   const t = useTranslations("common");
 
   return (
-    <div className="flex items-center justify-between px-1 py-3">
-      <p className="text-sm text-muted-foreground">
+    <div className="flex items-center justify-between gap-2 px-1 py-2">
+      <p className="text-xs text-muted-foreground">
         {t("pageOf", { page, totalPages, total })}
       </p>
-      <div className="flex gap-2">
+      <div className="flex gap-1.5">
         <Button
           variant="outline"
           size="sm"

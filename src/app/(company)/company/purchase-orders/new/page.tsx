@@ -58,7 +58,7 @@ export default function NewPurchaseOrderPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PURCHASE_ORDER_CREATE} fallback={<PermissionDenied />}>
       <PageHeader title={t("form.createTitle")} description={t("form.createDescription")} />
 
-      <div className="mx-auto max-w-3xl p-6">
+      <div className="mx-auto max-w-3xl p-3 sm:p-4">
         {!companyId || !suppliers || !locations || !products ? (
           <Skeleton className="h-96 w-full" />
         ) : (

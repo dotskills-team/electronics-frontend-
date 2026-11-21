@@ -71,7 +71,14 @@
       "reorderLevelDescription": "স্টক এই পরিমাণের নিচে নামলে আপনি সতর্কতা পাবেন।",
       "pricePositive": "শূন্য বা একটা ধনাত্মক সংখ্যা হতে হবে।",
       "sellByWeight": "ওজন করে বিক্রি হয়",
-      "sellByWeightDescription": "চাল বা সবজির মতো ওজন করে বিক্রি হওয়া পণ্যের জন্য এটা চালু করুন, পিস হিসেবে না।"
+      "sellByWeightDescription": "চাল বা সবজির মতো ওজন করে বিক্রি হওয়া পণ্যের জন্য এটা চালু করুন, পিস হিসেবে না।",
+      "warrantyMonths": "ওয়ারেন্টি / গ্যারান্টি (মাস)",
+      "warrantyMonthsPlaceholder": "যেমন ১২",
+      "warrantyMonthsDescription": "ওয়ারেন্টি না থাকলে ফাঁকা রাখুন। এই পণ্য বিক্রি হলে নিজে থেকেই বসবে, প্রতিটা বিক্রিতে চাইলে বদলাতে পারবেন।",
+      "warrantyMonthsInvalid": "০ থেকে ২৪০ এর মধ্যে একটা পূর্ণসংখ্যা দিন।",
+      "warrantyType": "ধরন",
+      "warrantyTypeWarranty": "ওয়ারেন্টি",
+      "warrantyTypeGuarantee": "গ্যারান্টি"
     },
     "bulkImport": {
       "trigger": "বাল্ক ইমপোর্ট",

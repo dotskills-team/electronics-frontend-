@@ -9,6 +9,7 @@ const messages = {
   nameLength: "name-length",
   baseUnitRequired: "base-unit-required",
   pricePositive: "price-positive",
+  warrantyMonthsInvalid: "warranty-months-invalid",
 };
 const schema = createProductSchema(messages);
 const baseUnitId = "11111111-1111-1111-1111-111111111111";
@@ -52,6 +53,22 @@ describe("createProductSchema", () => {
     expect(
       schema.safeParse({ sku: "RICE", name: "Rice", baseUnitId, costPrice: "-1", sellByWeight: false }).success,
     ).toBe(false);
+  });
+
+  it("accepts whole-number warranty months from 0 to 240, or blank", () => {
+    for (const warrantyMonths of ["", "0", "12", "240"]) {
+      expect(
+        schema.safeParse({ sku: "P", name: "Phone", baseUnitId, sellByWeight: false, warrantyMonths }).success,
+      ).toBe(true);
+    }
+  });
+
+  it("rejects warranty months that are negative, fractional, non-numeric or above 240", () => {
+    for (const warrantyMonths of ["-1", "1.5", "abc", "241"]) {
+      expect(
+        schema.safeParse({ sku: "P", name: "Phone", baseUnitId, sellByWeight: false, warrantyMonths }).success,
+      ).toBe(false);
+    }
   });
 
   it("accepts blank optional price fields", () => {

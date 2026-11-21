@@ -53,10 +53,10 @@ function CustomerPaymentsPageContent() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.CUSTOMER_PAYMENT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <div className="mb-4 flex justify-end">
           <Select value={customerId} onValueChange={setCustomerId}>
-            <SelectTrigger className="w-64">
+            <SelectTrigger className="w-52">
               <SelectValue placeholder={t("filterPlaceholder")} />
             </SelectTrigger>
             <SelectContent>

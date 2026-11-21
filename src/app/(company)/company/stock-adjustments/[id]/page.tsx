@@ -55,7 +55,7 @@ export default function StockAdjustmentDetailPage() {
         }
       />
 
-      <div className="mx-auto max-w-4xl space-y-6 p-6">
+      <div className="mx-auto max-w-4xl space-y-3 p-3 sm:space-y-4 sm:p-4">
         {!companyId || isLoading ? (
           <Skeleton className="h-64 w-full" />
         ) : error ? (

@@ -19,6 +19,7 @@ import { formatDateTime } from "@/lib/formatters/date";
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 import { useListLocationsQuery } from "@/features/location/api/location.api";
 import { useGetSaleQuery } from "@/features/sale/api/sale.api";
+import { SaleItemWarranty } from "@/features/sale/components/sale-item-warranty";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
 
 export default function SaleReceiptPage() {
@@ -38,7 +39,7 @@ export default function SaleReceiptPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SALE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("receipt.confirmedTitle")} />
 
-      <div className="space-y-4 p-6">
+      <div className="space-y-3 p-3 sm:p-4">
         {!companyId || isLoading ? (
           <Skeleton className="h-96 w-full" />
         ) : error ? (
@@ -81,11 +82,15 @@ export default function SaleReceiptPage() {
 
               <div className="space-y-1 border-t border-dashed border-border py-2">
                 {sale.items.map((item) => (
-                  <div key={item.id} className="flex justify-between gap-2">
-                    <span>
-                      {item.productName} × {item.quantity}
-                    </span>
-                    <span className="tabular-nums">{Number(item.subtotal).toLocaleString()}</span>
+                  <div key={item.id}>
+                    <div className="flex justify-between gap-2">
+                      <span>
+                        {item.productName} × {item.quantity}
+                      </span>
+                      <span className="tabular-nums">{Number(item.subtotal).toLocaleString()}</span>
+                    </div>
+                    {item.serialNote && <div className="text-xs text-muted-foreground">SN: {item.serialNote}</div>}
+                    <SaleItemWarranty item={item} className="text-xs text-muted-foreground" />
                   </div>
                 ))}
               </div>

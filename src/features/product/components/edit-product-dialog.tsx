@@ -47,6 +47,8 @@ export function EditProductDialog({ companyId, product, categories, units, open,
         salePrice: payload.salePrice,
         reorderLevel: payload.reorderLevel,
         sellByWeight: payload.sellByWeight,
+        warrantyMonths: payload.warrantyMonths,
+        warrantyType: payload.warrantyType,
       },
     });
 
@@ -77,6 +79,8 @@ export function EditProductDialog({ companyId, product, categories, units, open,
             salePrice: product.salePrice,
             reorderLevel: product.reorderLevel,
             sellByWeight: product.sellByWeight,
+            warrantyMonths: product.warrantyMonths ? String(product.warrantyMonths) : "",
+            warrantyType: product.warrantyType ?? "WARRANTY",
           }}
           categories={categories}
           units={units}

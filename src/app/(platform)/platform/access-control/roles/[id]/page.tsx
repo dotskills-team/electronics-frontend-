@@ -29,7 +29,7 @@ export default function PlatformRoleDetailsPage() {
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.ROLE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={role?.name ?? t("details.overview")} description={role?.code} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         <Button variant="ghost" size="sm" onClick={() => router.push("/platform/access-control/roles")}>
           <ArrowLeft aria-hidden="true" />
           {t("details.backToList")}

@@ -31,7 +31,7 @@ export default function CompanyRolesPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.RBAC_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("roles.title")} description={t("roles.description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <div className="mb-4 flex justify-end">{companyId && <CreateCompanyRoleDialog companyId={companyId} />}</div>
 
         {!companyId || isLoading ? (

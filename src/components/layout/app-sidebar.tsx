@@ -121,14 +121,14 @@ export function AppSidebar({
         style={SIDEBAR_THEME}
         className={cn(
           "relative flex h-full shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-[width] duration-300 ease-in-out",
-          isCollapsed ? "w-[76px]" : "w-64",
+          isCollapsed ? "w-[76px]" : "w-60",
         )}
       >
         {/* Brand + desktop collapse button */}
         <div
           className={cn(
             "hidden shrink-0 md:flex",
-            isCollapsed ? "flex-col items-center gap-2 py-3" : "h-16 items-center gap-3 px-6",
+            isCollapsed ? "flex-col items-center gap-2 py-3" : "h-14 items-center gap-3 px-4",
           )}
         >
           {isCollapsed ? (
@@ -166,7 +166,7 @@ export function AppSidebar({
         </div>
 
         {/* Scrollable menu */}
-        <div className="sidebar-scroll flex-1 overflow-y-auto p-4">
+        <div className="sidebar-scroll flex-1 overflow-y-auto p-3">
           {/* Mobile header */}
           <div className="mb-2 flex items-center justify-between md:hidden">
             <span className="text-xs font-medium tracking-wide text-sidebar-foreground/60 uppercase">
@@ -184,7 +184,7 @@ export function AppSidebar({
             </Button>
           </div>
 
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-0.5">
             {items.map((item) => {
               if (item.children) {
                 const visibleChildren = item.children.filter(isChildVisible);
@@ -376,7 +376,7 @@ function NavGroup({
         onClick={() => setManualOpen(!isOpen)}
         aria-expanded={isOpen}
         className={cn(
-          "group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-xs font-semibold tracking-wide uppercase transition-colors",
+          "group flex w-full items-center gap-3 rounded-lg px-3 py-1.5 text-[11px] font-semibold tracking-wide uppercase transition-colors",
           "text-sidebar-foreground/50 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar",
         )}
@@ -480,7 +480,7 @@ function NavLink({
       aria-current={active ? "page" : undefined}
       title={collapsed ? label : undefined}
       className={cn(
-        "group flex items-center rounded-lg py-2.5 text-sm font-medium transition-colors",
+        "group flex items-center rounded-lg py-2 text-[13px] font-medium transition-colors",
         collapsed ? "justify-center px-2" : "gap-3",
         !collapsed && indented ? "pl-9 pr-3" : !collapsed ? "px-3" : "",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar",

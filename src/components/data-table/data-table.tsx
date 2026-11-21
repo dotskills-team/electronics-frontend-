@@ -62,12 +62,12 @@ export function DataTable<TData extends RowData>({
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+    <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
-              <TableHead className="w-12">#</TableHead>
+              <TableHead className="w-10 px-3">#</TableHead>
               {headerGroup.headers.map((header) => (
                 <TableHead key={header.id}>
                   {header.isPlaceholder
@@ -81,7 +81,7 @@ export function DataTable<TData extends RowData>({
         <TableBody>
           {table.getRowModel().rows.map((row, rowIndex) => (
             <TableRow key={row.id}>
-              <TableCell className="text-muted-foreground tabular-nums">{indexOffset + rowIndex + 1}</TableCell>
+              <TableCell className="text-xs text-muted-foreground tabular-nums">{indexOffset + rowIndex + 1}</TableCell>
               {row.getAllCells().map((cell) => (
                 <TableCell key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

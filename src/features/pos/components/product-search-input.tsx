@@ -162,12 +162,12 @@ export function ProductSearchInput({ companyId, onSelectProduct }: ProductSearch
         autoComplete="off"
       />
       {value.trim() && searchErrorMessage && (
-        <div className="absolute z-10 mt-1 w-full rounded-md border border-destructive/50 bg-popover p-3 text-sm text-destructive shadow-md">
+        <div className="absolute z-30 mt-1 w-full rounded-md border border-destructive/50 bg-popover p-3 text-sm text-destructive shadow-md">
           {searchErrorMessage}
         </div>
       )}
       {value.trim() && !searchErrorMessage && results.length > 0 && (
-        <div className="absolute z-10 mt-1 max-h-72 w-full overflow-y-auto rounded-md border border-border bg-popover shadow-md">
+        <div className="absolute z-30 mt-1 max-h-72 w-full overflow-y-auto rounded-md border border-border bg-popover shadow-md">
           {results.map((product, index) => (
             <button
               key={product.id}
@@ -177,7 +177,7 @@ export function ProductSearchInput({ companyId, onSelectProduct }: ProductSearch
                 clearAndRefocus();
               }}
               className={cn(
-                "flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-accent",
+                "flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-accent lg:py-1.5 lg:text-[13px]",
                 index === effectiveHighlightedIndex && "bg-accent",
               )}
             >

@@ -51,7 +51,7 @@ export function DashboardOverview() {
           one thing an Owner whose RBAC/subscription isn't ready yet still
           needs to see (see Day 4-7 Setup Status work); never gate it behind
           the same permission the overview below requires. */}
-      <div className="px-4 pb-0 sm:px-6 sm:pb-0 xl:p-6 xl:pb-0">
+      <div className="px-4 pb-0 sm:px-6 sm:pb-0 xl:p-4 xl:pb-0">
         <SetupStatusCard />
       </div>
       <CompanyPermissionGate permission={COMPANY_PERMISSIONS.REPORT_READ} fallback={<PermissionDenied />}>
@@ -115,7 +115,7 @@ function DashboardOverviewContent() {
   const maxRevenue = Math.max(...data.topProducts.map((p) => Number(p.revenue)), 1);
 
   return (
-    <div className="space-y-4 p-3 sm:space-y-5 sm:p-5 xl:p-6">
+    <div className="space-y-4 p-3 sm:space-y-5 sm:p-5 xl:space-y-4 xl:p-4">
       {/* Header */}
       <div className="flex justify-start">
         <div className="flex w-full flex-wrap items-end justify-start gap-3 rounded-xl border border-slate-200/80 bg-white p-3 shadow-sm sm:w-fit dark:border-white/10 dark:bg-card">
@@ -729,7 +729,7 @@ function EmptyStateWithRetry({ message, onRetry }: { message: string; onRetry: (
 
 function DashboardOverviewSkeleton() {
   return (
-    <div className="space-y-4 p-3 sm:space-y-5 sm:p-5 xl:p-6">
+    <div className="space-y-4 p-3 sm:space-y-5 sm:p-5 xl:space-y-4 xl:p-4">
       <Skeleton className="h-10 w-64 rounded-lg" />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
         {Array.from({ length: 6 }).map((_, index) => (

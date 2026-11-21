@@ -53,8 +53,8 @@ export default function PlatformLayout({ children }: { children: React.ReactNode
               brand={brand}
             />
           </div>
-          <div className="flex min-h-screen flex-col md:pl-64">
-            <header className="sticky top-0 z-30 flex h-16 items-center justify-between bg-sidebar/95 px-4 backdrop-blur supports-backdrop-filter:bg-sidebar/80 sm:px-6">
+          <div className="flex min-h-screen flex-col md:pl-60">
+            <header className="sticky top-0 z-30 flex h-14 items-center justify-between bg-sidebar/95 px-4 backdrop-blur supports-backdrop-filter:bg-sidebar/80 sm:px-6">
               <div className="flex items-center gap-3">
                 <Button
                   variant="ghost"

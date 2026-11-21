@@ -24,6 +24,9 @@ export interface CartLine {
   unitLabel?: string;
   /** Free-text serial/IMEI captured at sale time — a manual note only, never validated or checked for uniqueness. */
   serialNote?: string;
+  /** Warranty length for THIS sale line, defaulted from the Product when added and editable per line. 0 = sell this line with no warranty. */
+  warrantyMonths: number;
+  warrantyType: "WARRANTY" | "GUARANTEE";
 }
 
 /**
@@ -71,9 +74,15 @@ export function useCart() {
           discountAmount: 0,
           variantId: variant?.id,
           variantLabel: variant ? formatVariantLabel(variant) : undefined,
+          warrantyMonths: product.warrantyMonths ?? 0,
+          warrantyType: product.warrantyType ?? "WARRANTY",
         },
       ];
     });
+  }
+
+  function updateWarrantyMonths(index: number, warrantyMonths: number) {
+    setLines((prev) => prev.map((line, i) => (i === index ? { ...line, warrantyMonths } : line)));
   }
 
   function updateQuantity(index: number, quantity: number) {
@@ -120,5 +129,15 @@ export function useCart() {
     setLines([]);
   }
 
-  return { lines, addProduct, updateQuantity, updateDiscount, updateSerialNote, updateUnit, removeLine, clear };
+  return {
+    lines,
+    addProduct,
+    updateQuantity,
+    updateDiscount,
+    updateSerialNote,
+    updateWarrantyMonths,
+    updateUnit,
+    removeLine,
+    clear,
+  };
 }

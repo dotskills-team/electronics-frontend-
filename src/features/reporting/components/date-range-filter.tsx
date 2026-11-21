@@ -38,11 +38,11 @@ interface DateRangeFilterProps {
 }
 
 /* UI ONLY — console look: quiet slate labels with blue icons, white controls, blue focus */
-const FIELD = "flex w-full flex-col gap-1.5 sm:w-auto";
+const FIELD = "flex w-full flex-col gap-1 sm:w-auto";
 const LABEL_CLASS = "flex items-center gap-1.5 text-xs font-medium text-slate-600 dark:text-muted-foreground";
 const ICON_CLASS = "size-3.5 text-blue-600";
 const CONTROL_BASE =
-  "h-9 rounded-lg border-slate-200 bg-white text-sm shadow-xs transition-[border-color,box-shadow] duration-200 hover:border-slate-300 focus-visible:border-blue-600 focus-visible:ring-blue-600/20 motion-reduce:transition-none dark:border-input dark:bg-background";
+  "h-8 rounded-lg border-slate-200 bg-white text-[13px] shadow-xs transition-[border-color,box-shadow] duration-200 hover:border-slate-300 focus-visible:border-blue-600 focus-visible:ring-blue-600/20 motion-reduce:transition-none dark:border-input dark:bg-background";
 
 /**
  * No date-range-picker library/component exists anywhere in this codebase
@@ -65,7 +65,7 @@ export function DateRangeFilter({
   labels,
 }: DateRangeFilterProps) {
   return (
-    <div className="flex flex-wrap items-end gap-3">
+    <div className="flex flex-wrap items-end gap-2.5">
       <div className={FIELD}>
         <Label htmlFor="report-date-from" className={LABEL_CLASS}>
           <CalendarDays className={ICON_CLASS} aria-hidden="true" />
@@ -80,7 +80,7 @@ export function DateRangeFilter({
             // Calendar "Clear" gives "" — the API requires a valid ISO date, so keep the current one.
             if (event.target.value) onDateFromChange(event.target.value);
           }}
-          className={`${CONTROL_BASE} w-full tabular-nums sm:w-40`}
+          className={`${CONTROL_BASE} w-full tabular-nums sm:w-36`}
         />
       </div>
       <div className={FIELD}>
@@ -97,7 +97,7 @@ export function DateRangeFilter({
             // Calendar "Clear" gives "" — the API requires a valid ISO date, so keep the current one.
             if (event.target.value) onDateToChange(event.target.value);
           }}
-          className={`${CONTROL_BASE} w-full tabular-nums sm:w-40`}
+          className={`${CONTROL_BASE} w-full tabular-nums sm:w-36`}
         />
       </div>
       {showLocationFilter && (
@@ -107,7 +107,7 @@ export function DateRangeFilter({
             {labels.locationPlaceholder}
           </Label>
           <Select value={locationId} onValueChange={onLocationChange}>
-            <SelectTrigger className={`${CONTROL_BASE} w-full sm:w-56`}>
+            <SelectTrigger className={`${CONTROL_BASE} w-full sm:w-52`}>
               <SelectValue placeholder={labels.locationPlaceholder} />
             </SelectTrigger>
             <SelectContent>

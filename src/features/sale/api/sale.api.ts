@@ -17,6 +17,9 @@ export interface SaleItemInput {
   unitPrice?: number;
   discountAmount?: number;
   serialNote?: string;
+  /** Omit to use the Product's default; 0 = sell this line with no warranty. */
+  warrantyMonths?: number;
+  warrantyType?: "WARRANTY" | "GUARANTEE";
 }
 
 export interface SalePaymentInput {

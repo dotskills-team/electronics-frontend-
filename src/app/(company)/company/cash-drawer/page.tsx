@@ -38,7 +38,7 @@ export default function CashDrawerPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.CASH_DRAWER_SESSION_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         {!companyId || isLoading ? (
           <Skeleton className="h-40 w-full" />
         ) : session ? (

@@ -25,7 +25,7 @@ export default function CompanySubscriptionPage() {
     <>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         {isLoading ? (
           <Skeleton className="h-40 w-full" />
         ) : error ? (

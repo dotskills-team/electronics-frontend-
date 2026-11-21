@@ -51,7 +51,7 @@ function CompanyMembersPageContent() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.MEMBER_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("members.title")} description={t("members.description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <div className="mb-4 flex justify-end">
           {companyId && <CreateCompanyMemberDialog companyId={companyId} />}
         </div>

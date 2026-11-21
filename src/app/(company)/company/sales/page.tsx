@@ -55,8 +55,8 @@ export default function SalesPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SALE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="p-6">
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+      <div className="p-3 sm:p-4">
+        <div className="mb-2.5 flex flex-wrap items-center justify-between gap-2">
           <Select
             value={locationId}
             onValueChange={(value) => {
@@ -64,7 +64,7 @@ export default function SalesPage() {
               setPage(1);
             }}
           >
-            <SelectTrigger className="w-64">
+            <SelectTrigger className="w-52">
               <SelectValue placeholder={t("locationFilterPlaceholder")} />
             </SelectTrigger>
             <SelectContent>

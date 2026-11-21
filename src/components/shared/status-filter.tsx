@@ -28,7 +28,7 @@ export function StatusFilter({
       value={value ?? ALL_VALUE}
       onValueChange={(next) => onChange(next === ALL_VALUE ? undefined : next)}
     >
-      <SelectTrigger className="w-44">
+      <SelectTrigger className="w-40">
         <SelectValue placeholder={t("status")} />
       </SelectTrigger>
       <SelectContent>

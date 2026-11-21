@@ -12,6 +12,10 @@ export interface SaleItem {
   unitCost: string;
   discountAmount: string;
   serialNote: string | null;
+  /** Snapshot taken at sale time — all null = sold with no warranty. */
+  warrantyType: "WARRANTY" | "GUARANTEE" | null;
+  warrantyMonths: number | null;
+  warrantyExpiresAt: string | null;
   subtotal: string;
 }
 

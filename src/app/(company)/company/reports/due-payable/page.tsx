@@ -85,7 +85,7 @@ export default function DuePayableLedgerPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.REPORT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("duePayableLedger.title")} description={t("duePayableLedger.description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as LedgerTab)}>
           <TabsList>
             <TabsTrigger value="customer">{t("duePayableLedger.customerTab")}</TabsTrigger>

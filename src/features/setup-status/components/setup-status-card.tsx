@@ -303,7 +303,7 @@ export function SetupStatusCard() {
     return (
       /* UI ONLY — success state: soft green→cyan wash with glass */
       <Card className="rounded-2xl border-success/30 bg-gradient-to-br from-success/10 via-card/70 to-info/10 shadow-[0_8px_32px_-12px_rgb(20_120_80/0.25)] backdrop-blur-xl">
-        <CardContent className="flex flex-col items-center gap-3 py-8 text-center sm:flex-row sm:justify-between sm:text-left">
+        <CardContent className="flex flex-col items-center gap-3 py-8 text-center sm:flex-row sm:justify-between sm:text-left lg:py-2">
           <div className="flex items-center gap-3">
             <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-success/15 text-success ring-1 ring-success/25">
               <PartyPopper className="size-6" aria-hidden="true" />

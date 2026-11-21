@@ -65,6 +65,7 @@ export function ProductForm({
     nameLength: t("form.nameLength"),
     baseUnitRequired: t("form.baseUnitRequired"),
     pricePositive: t("form.pricePositive"),
+    warrantyMonthsInvalid: t("form.warrantyMonthsInvalid"),
   });
 
   const form = useForm<ProductFormValues>({
@@ -304,6 +305,53 @@ function generateInternalBarcode(): string {
           />
         </div>
         <FormDescription>{t("form.reorderLevelDescription")}</FormDescription>
+
+        <div className="grid grid-cols-2 gap-4">
+          <FormField
+            control={form.control}
+            name="warrantyMonths"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t("form.warrantyMonths")}</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    value={field.value ?? ""}
+                    type="number"
+                    step="1"
+                    min="0"
+                    max="240"
+                    placeholder={t("form.warrantyMonthsPlaceholder")}
+                  />
+                </FormControl>
+                <FormDescription>{t("form.warrantyMonthsDescription")}</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="warrantyType"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t("form.warrantyType")}</FormLabel>
+                <Select value={field.value ?? "WARRANTY"} onValueChange={field.onChange}>
+                  <FormControl>
+                    <SelectTrigger className="w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="WARRANTY">{t("form.warrantyTypeWarranty")}</SelectItem>
+                    <SelectItem value="GUARANTEE">{t("form.warrantyTypeGuarantee")}</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}

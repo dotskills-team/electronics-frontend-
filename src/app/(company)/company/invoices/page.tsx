@@ -38,10 +38,10 @@ export default function CompanyInvoicesPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.INVOICE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="p-6">
-        <div className="mb-4 flex flex-wrap items-center gap-3">
+      <div className="p-3 sm:p-4">
+        <div className="mb-2.5 flex flex-wrap items-center gap-3">
           <Input
-            className="max-w-sm"
+            className="w-full sm:w-72"
             placeholder={tCommon("search")}
             value={search}
             onChange={(event) => {

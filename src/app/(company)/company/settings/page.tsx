@@ -51,7 +51,7 @@ export default function CompanySettingsPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SETTINGS_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="max-w-2xl space-y-6 p-6">
+      <div className="max-w-2xl space-y-3 p-3 sm:space-y-4 sm:p-4">
         {!companyId || isLoading ? (
           <Skeleton className="h-96 w-full" />
         ) : error ? (

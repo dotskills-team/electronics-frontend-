@@ -31,7 +31,7 @@ export default function UnitsPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.UNIT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <div className="mb-4 flex justify-end">
           {companyId && <CreateUnitDialog companyId={companyId} units={units ?? []} />}
         </div>

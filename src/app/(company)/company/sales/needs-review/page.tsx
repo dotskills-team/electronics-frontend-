@@ -42,7 +42,7 @@ export default function NeedsReviewSalesPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SALE_VOID} fallback={<PermissionDenied />}>
       <PageHeader title={t("needsReview.title")} description={t("needsReview.description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <DataTable
           columns={columns}
           data={data?.items ?? []}

@@ -432,7 +432,7 @@ function StockReportPageContent() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.REPORT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("stockReport.title")} description={t("stockReport.description")} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-wrap items-end gap-4">
             <DateRangeFilter

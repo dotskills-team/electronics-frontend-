@@ -42,11 +42,11 @@ export default function FeaturesPage() {
   return (
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.FEATURE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <div className="mb-4 flex items-center justify-between gap-3">
           <div className="flex gap-3">
             <Input
-              className="max-w-sm"
+              className="w-full sm:w-72"
               placeholder={tCommon("search")}
               value={search}
               onChange={(event) => setSearch(event.target.value)}

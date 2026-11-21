@@ -30,7 +30,7 @@ export default function CompanyInvoiceDetailsPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.INVOICE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={invoice?.invoiceNumber ?? t("details.overview")} description={t("details.overview")} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         <Button variant="ghost" size="sm" onClick={() => router.push("/company/invoices")}>
           <ArrowLeft aria-hidden="true" />
           {t("details.backToList")}

@@ -15,7 +15,7 @@ import { ActionConfirmDialog } from "@/components/shared/action-confirm-dialog";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -35,6 +35,7 @@ import { useOnlineStatus } from "@/features/pos/hooks/use-online-status";
 import { usePendingSalesCount } from "@/features/pos/hooks/use-pending-sales-count";
 import { queuePendingSale } from "@/features/pos/lib/offline-sale-queue";
 import { ProductSearchInput } from "@/features/pos/components/product-search-input";
+import { PosInsightsBar } from "@/features/pos/components/pos-insights-bar";
 import { VariantSelectDialog } from "@/features/pos/components/variant-select-dialog";
 import { PosCart } from "@/features/pos/components/pos-cart";
 import { PosQuickCustomerDialog } from "@/features/pos/components/pos-quick-customer-dialog";
@@ -77,7 +78,17 @@ export default function PosPage() {
   const [saleDiscountInput, setSaleDiscountInput] = useState("");
   const saleDiscountAmount = Number(saleDiscountInput) || 0;
 
-  const { lines, addProduct, updateQuantity, updateDiscount, updateSerialNote, updateUnit, removeLine, clear: clearCart } = useCart();
+  const {
+    lines,
+    addProduct,
+    updateQuantity,
+    updateDiscount,
+    updateSerialNote,
+    updateWarrantyMonths,
+    updateUnit,
+    removeLine,
+    clear: clearCart,
+  } = useCart();
   const tender = useTender();
 
   // A hasVariants product never adds straight to the cart — it opens this
@@ -136,6 +147,11 @@ export default function PosPage() {
         quantity: line.quantity,
         discountAmount: line.discountAmount || undefined,
         serialNote: line.serialNote?.trim() || undefined,
+        // Always sent (0 = explicitly no warranty), so what the cashier saw
+        // in the cart is exactly what gets stored, even if the Product's
+        // default changed in the meantime.
+        warrantyMonths: line.warrantyMonths,
+        warrantyType: line.warrantyMonths > 0 ? line.warrantyType : undefined,
       })),
       saleDiscountAmount: saleDiscountAmount || undefined,
       payments: tender.lines.filter((line) => line.amount > 0).map((line) => ({ method: line.method, amount: line.amount })),
@@ -221,36 +237,35 @@ export default function PosPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SALE_CREATE} fallback={<PermissionDenied />}>
       {/* <PageHeader title={t("title")} description={t("description")} /> */}
 
-      <div className="grid gap-6 px-4 py-2 lg:grid-cols-[2fr_1fr]">
-        <div className="space-y-4">
+      <div className="grid gap-3 px-3 py-2 lg:grid-cols-[minmax(0,1fr)_20.5rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_22rem]">
+        <div className="min-w-0 space-y-2">
           {!isOnline && (
-            <Alert variant="destructive">
+            <Alert variant="destructive" className="px-2.5 py-1.5 text-xs">
               <AlertTitle>{t("offline.badge")}</AlertTitle>
               <AlertDescription>{t("offline.description")}</AlertDescription>
             </Alert>
           )}
           {pendingSalesCount > 0 && (
-            <Alert>
+            <Alert className="px-2.5 py-1.5 text-xs">
               <AlertTitle>{t("offline.pendingTitle")}</AlertTitle>
               <AlertDescription>{t("offline.pendingCount", { count: pendingSalesCount })}</AlertDescription>
             </Alert>
           )}
           {!openCashDrawerSession && (
-            <Alert>
-              <AlertTitle>{tCashDrawer("posNudge.title")}</AlertTitle>
-              <AlertDescription>
-                {tCashDrawer("posNudge.description")}{" "}
-                <Link href="/company/cash-drawer" className="font-medium underline">
-                  {tCashDrawer("posNudge.link")}
-                </Link>
-              </AlertDescription>
-            </Alert>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 rounded-md border border-border bg-muted/40 px-2.5 py-1.5 text-xs">
+              <span className="font-medium">{tCashDrawer("posNudge.title")}</span>
+              <span className="text-muted-foreground">{tCashDrawer("posNudge.description")}</span>
+              <Link href="/company/cash-drawer" className="font-medium underline">
+                {tCashDrawer("posNudge.link")}
+              </Link>
+            </div>
           )}
 
-          <div className="max-w-xs">
-            <label className="mb-1 block text-sm font-medium">{t("location")}</label>
+          <div className="flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-xs lg:w-44 lg:shrink-0">
+            <label className="mb-0.5 block text-xs font-medium text-muted-foreground">{t("location")}</label>
             <Select value={locationId} onValueChange={setSelectedLocationId}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full text-xs lg:h-8">
                 <SelectValue placeholder={t("locationPlaceholder")} />
               </SelectTrigger>
               <SelectContent>
@@ -262,8 +277,17 @@ export default function PosPage() {
               </SelectContent>
             </Select>
             {salesLocations.length === 0 && (
-              <p className="mt-1 text-sm text-destructive">{t("noSalesLocations")}</p>
+              <p className="mt-1 text-xs text-destructive">{t("noSalesLocations")}</p>
             )}
+          </div>
+
+          {companyId && locationId && (
+            <PosInsightsBar
+              companyId={companyId}
+              locationId={locationId}
+              locationName={salesLocations.find((location) => location.id === locationId)?.name ?? ""}
+            />
+          )}
           </div>
 
           <ProductSearchInput
@@ -285,17 +309,15 @@ export default function PosPage() {
             onUpdateQuantity={updateQuantity}
             onUpdateDiscount={updateDiscount}
             onUpdateSerialNote={updateSerialNote}
+            onUpdateWarrantyMonths={updateWarrantyMonths}
             onUpdateUnit={updateUnit}
             onRemove={removeLine}
           />
         </div>
 
-        <div className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t("summary.total")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm">
+        <div className="space-y-2 lg:sticky lg:top-2">
+          <Card size="sm">
+            <CardContent className="space-y-1 text-xs">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">{t("summary.subtotal")}</span>
                 <span className="tabular-nums">
@@ -317,7 +339,7 @@ export default function PosPage() {
                   value={saleDiscountInput}
                   onChange={(event) => setSaleDiscountInput(event.target.value)}
                   placeholder={t("saleDiscountPlaceholder")}
-                  className="w-28 text-right"
+                  className="h-7 w-24 text-right text-xs md:text-xs"
                 />
               </div>
               {settings?.enableTax && (
@@ -328,18 +350,18 @@ export default function PosPage() {
                   </span>
                 </div>
               )}
-              <div className="flex justify-between border-t border-border pt-2 text-base font-semibold">
+              <div className="flex justify-between border-t border-border pt-1.5 text-base font-semibold">
                 <span>{t("summary.total")}</span>
                 <span className="tabular-nums">
                   ৳ {totalAmount.toLocaleString("en-BD")}
                 </span>
               </div>
 
-              <div className="pt-2">
-                <label className="mb-1 block text-sm font-medium">{t("customer.label")}</label>
-                <div className="flex items-center gap-2">
+              <div className="pt-1.5">
+                <label className="mb-0.5 block text-xs font-medium text-muted-foreground">{t("customer.label")}</label>
+                <div className="flex items-center gap-1.5">
                   <Select value={customerId} onValueChange={setCustomerId}>
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className="w-full text-xs">
                       <SelectValue placeholder={t("customer.placeholder")} />
                     </SelectTrigger>
                     <SelectContent>
@@ -366,8 +388,8 @@ export default function PosPage() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent className="pt-6">
+          <Card size="sm">
+            <CardContent>
               <TenderSection
                 lines={tender.lines}
                 total={totalAmount}
@@ -380,7 +402,7 @@ export default function PosPage() {
             </CardContent>
           </Card>
 
-          <Button className="w-full" size="lg" disabled={!canSubmit || isLoading} onClick={handleCompleteSale}>
+          <Button className="w-full text-sm" size="lg" disabled={!canSubmit || isLoading} onClick={handleCompleteSale}>
             {isLoading && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
             {t("submit.button")}
           </Button>

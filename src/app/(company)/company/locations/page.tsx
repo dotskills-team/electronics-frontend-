@@ -32,7 +32,7 @@ export default function LocationsPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.LOCATION_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <div className="mb-4 flex justify-end">{companyId && <CreateLocationDialog companyId={companyId} />}</div>
 
         {!companyId || isLoading ? (

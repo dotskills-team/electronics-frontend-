@@ -32,7 +32,7 @@ export default function SuppliersPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SUPPLIER_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <div className="mb-4 flex justify-end gap-2">
           <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SUPPLIER_PAYMENT_READ}>
             <Button variant="outline" asChild>

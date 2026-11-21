@@ -133,10 +133,10 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
           <div
             className={cn(
               "flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out",
-              collapsed ? "md:pl-[76px]" : "md:pl-64",
+              collapsed ? "md:pl-[76px]" : "md:pl-60",
             )}
           >
-            <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 bg-white/95 px-4 backdrop-blur supports-backdrop-filter:bg-white/80 sm:px-6 dark:border-white/10 dark:bg-card/95">
+            <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-slate-200 bg-white/95 px-4 backdrop-blur supports-backdrop-filter:bg-white/80 sm:px-6 dark:border-white/10 dark:bg-card/95">
               <div className="flex items-center gap-3">
                 <Button
                   variant="ghost"

@@ -15,18 +15,18 @@ export function StatCard({
   isLoading?: boolean;
 }) {
   return (
-    <Card className="transition-shadow hover:shadow-md">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">{label}</CardTitle>
-        <div className="flex size-11 items-center justify-center rounded-full bg-primary/10">
-          <Icon className="size-6 text-primary" aria-hidden="true" />
+    <Card size="sm" className="transition-shadow hover:shadow-md">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-0">
+        <CardTitle className="text-xs font-medium text-muted-foreground">{label}</CardTitle>
+        <div className="flex size-8 items-center justify-center rounded-full bg-primary/10">
+          <Icon className="size-4 text-primary" aria-hidden="true" />
         </div>
       </CardHeader>
       <CardContent>
         {isLoading ? (
-          <Skeleton className="h-9 w-20" />
+          <Skeleton className="h-7 w-20" />
         ) : (
-          <p className="text-3xl font-semibold tracking-tight text-foreground tabular-nums">{value}</p>
+          <p className="text-2xl font-semibold tracking-tight text-foreground tabular-nums">{value}</p>
         )}
       </CardContent>
     </Card>

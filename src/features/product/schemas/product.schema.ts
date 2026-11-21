@@ -8,6 +8,7 @@ export interface ProductFormMessages {
   nameLength: string;
   baseUnitRequired: string;
   pricePositive: string;
+  warrantyMonthsInvalid: string;
 }
 
 export function createProductSchema(messages: ProductFormMessages) {
@@ -28,6 +29,15 @@ export function createProductSchema(messages: ProductFormMessages) {
     salePrice: nonNegativePriceField(messages.pricePositive),
     reorderLevel: nonNegativePriceField(messages.pricePositive),
     sellByWeight: z.boolean(),
+    /** Whole months, 0–240 (matches the backend's @Min(0) @Max(240)); empty = no warranty. */
+    warrantyMonths: z
+      .string()
+      .optional()
+      .or(z.literal(""))
+      .refine((value) => !value || (/^\d+$/.test(value) && Number(value) <= 240), {
+        error: messages.warrantyMonthsInvalid,
+      }),
+    warrantyType: z.enum(["WARRANTY", "GUARANTEE"]).optional(),
   });
 }
 

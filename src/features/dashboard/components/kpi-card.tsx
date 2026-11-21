@@ -290,12 +290,12 @@ export function KpiCard({
         </>
       )}
 
-      <CardContent className="relative p-5">
+      <CardContent className="relative p-5 lg:p-3.5">
         {/* Icon */}
         <div className="flex items-start justify-between">
           <div
             className={cn(
-              "flex size-11 items-center justify-center rounded-xl",
+              "flex size-11 items-center justify-center rounded-xl lg:size-9",
               "ring-1 transition-transform duration-300 motion-reduce:transition-none",
               "group-hover:scale-105 motion-reduce:group-hover:scale-100",
               tone
@@ -308,15 +308,15 @@ export function KpiCard({
         </div>
 
         {/* Label */}
-        <p className="mt-4 text-sm font-medium text-muted-foreground">
+        <p className="mt-4 text-sm font-medium text-muted-foreground lg:mt-2.5 lg:text-xs">
           {label}
         </p>
 
         {/* Value — tabular figures so numbers align across cards */}
         <p
           className={cn(
-            "mt-1 font-bold tracking-tight tabular-nums",
-            "text-lg sm:text-xl md:text-xl lg:text-2xl",
+            "mt-1 font-bold tracking-tight tabular-nums lg:mt-0.5",
+            "text-lg sm:text-xl md:text-xl lg:text-xl",
             "break-all leading-tight",
             tone ? TONE_TEXT_CLASS[tone] : "text-foreground",
           )}
@@ -326,7 +326,7 @@ export function KpiCard({
 
         {/* Helper text */}
         {helperText && (
-          <p className="mt-2 text-xs text-muted-foreground">
+          <p className="mt-2 text-xs text-muted-foreground lg:mt-1">
             {helperText}
           </p>
         )}

@@ -24,7 +24,15 @@
       "increase": "পরিমাণ বাড়ান",
       "remove": "মুছে ফেলুন",
       "serialNotePlaceholder": "সিরিয়াল/IMEI (ঐচ্ছিক)",
-      "baseUnitOption": "বেস ইউনিট"
+      "baseUnitOption": "বেস ইউনিট",
+      "warrantyMonthsLabel": "ওয়ারেন্টির মাস",
+      "warrantyMonths": "মাস ওয়ারেন্টি",
+      "guaranteeMonths": "মাস গ্যারান্টি",
+      "noWarranty": "ওয়ারেন্টি নেই",
+      "monthsShort": "মাস",
+      "unitPriceShort": "দাম",
+      "discountShort": "ছাড়",
+      "serialShort": "সিরিয়াল/IMEI"
     },
     "summary": {
       "subtotal": "সাবটোটাল",
@@ -54,7 +62,8 @@
       "total": "সর্বমোট",
       "entered": "এন্টার করা হয়েছে",
       "remaining": "বাকি আছে",
-      "fillRemaining": "বাকিটা পূরণ করুন"
+      "fillRemaining": "বাকিটা পূরণ করুন",
+      "fillShort": "বাকিটা"
     },
     "dueLimitDialog": {
       "title": "বাকির সীমা পার হয়ে যাচ্ছে",
@@ -73,6 +82,48 @@
       "pendingTitle": "Sync-এর অপেক্ষায়",
       "pendingCount": "{count}টা বিক্রয় এই ডিভাইসে সেভ আছে, sync হওয়ার অপেক্ষায়।",
       "syncSuccess": "{count}টা বিক্রয় সফলভাবে sync হয়েছে।"
+    },
+    "insights": {
+      "groupLabel": "স্টক ও বিক্রির শর্টকাট",
+      "lowStock": "কম স্টক",
+      "lowStockHint": "{count}টি রিস্টক করতে হবে",
+      "lowStockAllGood": "সব পণ্য মজুত আছে",
+      "totalStock": "মোট স্টক",
+      "totalStockHint": "{count}টি পণ্য",
+      "topSelling": "সেরা বিক্রি",
+      "topSellingHint": "সেরা বিক্রিত পণ্য",
+      "stock": {
+        "lowTitle": "কম স্টক",
+        "allTitle": "মোট স্টক",
+        "description": "{location}-এর স্টক",
+        "chipItems": "{count}টি পণ্য",
+        "chipLow": "{count}টি কম",
+        "chipOut": "{count}টি স্টক শেষ",
+        "searchPlaceholder": "পণ্যের নাম, SKU বা বারকোড দিয়ে খুঁজুন",
+        "sku": "SKU {sku}",
+        "low": "কম স্টক",
+        "outOfStock": "স্টক শেষ",
+        "reorderAt": "রিঅর্ডার লেভেল {level}",
+        "empty": "এই লোকেশনে কোনো পণ্য পাওয়া যায়নি।",
+        "emptyLow": "কোনো পণ্যের স্টক কম নেই। সব পণ্য রিঅর্ডার লেভেলের ওপরে আছে।",
+        "emptySearch": "\"{term}\" নামে কোনো পণ্য পাওয়া যায়নি।",
+        "pageOf": "পৃষ্ঠা {page} / {totalPages}",
+        "totalResults": "মোট {count}টি ফল",
+        "previous": "আগের",
+        "next": "পরের"
+      },
+      "top": {
+        "title": "সবচেয়ে বেশি বিক্রি হওয়া পণ্য",
+        "description": "{location}-এর সেরা বিক্রিত পণ্য, বিক্রির পরিমাণ অনুযায়ী",
+        "periods": {
+          "today": "আজ",
+          "last7Days": "গত ৭ দিন",
+          "thisMonth": "এই মাস"
+        },
+        "rank": "র‍্যাঙ্ক {rank}",
+        "sales": "{count}টি বিক্রি",
+        "empty": "এই সময়ে এখনো কোনো বিক্রি হয়নি।"
+      }
     }
   }
 }

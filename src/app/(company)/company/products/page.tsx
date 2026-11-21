@@ -58,8 +58,8 @@ export default function ProductsPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PRODUCT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="p-6">
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+      <div className="p-3 sm:p-4">
+        <div className="mb-2.5 flex flex-wrap items-center justify-between gap-2">
           <Input
             value={search}
             onChange={(event) => setSearch(event.target.value)}

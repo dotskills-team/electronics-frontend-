@@ -81,6 +81,9 @@
       "tax": "Tax",
       "total": "Total",
       "paymentsTitle": "Payments",
+      "warrantyLabel": "Warranty",
+      "guaranteeLabel": "Guarantee",
+      "warrantyLine": "{type}: {months} months, valid until {date}",
       "thankYou": "Thank you for your purchase."
     }
   }

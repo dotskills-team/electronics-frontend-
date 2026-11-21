@@ -55,7 +55,7 @@ export default function PurchaseOrderDetailPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.PURCHASE_ORDER_READ} fallback={<PermissionDenied />}>
       <PageHeader title={order?.orderNumber ?? t("title")} description={supplier?.name} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         <Button variant="ghost" size="sm" onClick={() => router.push("/company/purchase-orders")}>
           <ArrowLeft aria-hidden="true" />
           {t("detail.backToList")}

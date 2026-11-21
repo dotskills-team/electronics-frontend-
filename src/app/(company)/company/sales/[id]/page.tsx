@@ -22,6 +22,7 @@ import { useCurrentCompany } from "@/features/company/hooks/use-current-company"
 import { useListLocationsQuery } from "@/features/location/api/location.api";
 import { useListCustomersQuery } from "@/features/customer/api/customer.api";
 import { useGetSaleQuery, useListSaleReturnsQuery } from "@/features/sale/api/sale.api";
+import { SaleItemWarranty } from "@/features/sale/components/sale-item-warranty";
 import { VoidSaleDialog } from "@/features/sale/components/void-sale-dialog";
 import { CreateSaleReturnDialog } from "@/features/sale/components/create-sale-return-dialog";
 import { COMPANY_PERMISSIONS } from "@/constants/permissions";
@@ -51,7 +52,7 @@ export default function SaleDetailPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SALE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={sale?.saleNumber ?? t("title")} description={customer?.name} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         <Button variant="ghost" size="sm" onClick={() => router.push("/company/sales")}>
           <ArrowLeft aria-hidden="true" />
           {t("detail.backToList")}
@@ -145,6 +146,7 @@ export default function SaleDetailPage() {
                           {item.serialNote && (
                             <div className="text-xs text-muted-foreground">SN: {item.serialNote}</div>
                           )}
+                          <SaleItemWarranty item={item} className="text-xs text-muted-foreground" />
                         </TableCell>
                         <TableCell className="tabular-nums">{item.quantity}</TableCell>
                         <TableCell className="tabular-nums">{Number(item.unitPrice).toLocaleString()}</TableCell>

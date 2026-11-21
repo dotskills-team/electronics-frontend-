@@ -71,7 +71,7 @@ export default function StockAdjustmentsPage() {
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.STOCK_ADJUSTMENT_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         {data?.summary && (
           <div className="mb-6 space-y-3">
             <StatCard
@@ -89,7 +89,7 @@ export default function StockAdjustmentsPage() {
           </div>
         )}
 
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+        <div className="mb-2.5 flex flex-wrap items-center justify-between gap-2">
           <div className="flex flex-wrap gap-2">
             <Select
               value={locationId}
@@ -98,7 +98,7 @@ export default function StockAdjustmentsPage() {
                 setPage(1);
               }}
             >
-              <SelectTrigger className="w-56">
+              <SelectTrigger className="w-48">
                 <SelectValue placeholder={t("history.locationFilterPlaceholder")} />
               </SelectTrigger>
               <SelectContent>
@@ -118,7 +118,7 @@ export default function StockAdjustmentsPage() {
                 setPage(1);
               }}
             >
-              <SelectTrigger className="w-56">
+              <SelectTrigger className="w-48">
                 <SelectValue placeholder={t("history.reasonFilterPlaceholder")} />
               </SelectTrigger>
               <SelectContent>

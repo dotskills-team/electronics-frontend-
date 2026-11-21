@@ -39,7 +39,7 @@ export default function PlatformSubscriptionDetailsPage() {
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.SUBSCRIPTION_READ} fallback={<PermissionDenied />}>
       <PageHeader title={subscription?.plan.name ?? t("details.overview")} description={t("details.overview")} />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-3 sm:space-y-4 sm:p-4">
         <Button variant="ghost" size="sm" onClick={() => router.push("/platform/subscriptions")}>
           <ArrowLeft aria-hidden="true" />
           {t("details.backToList")}

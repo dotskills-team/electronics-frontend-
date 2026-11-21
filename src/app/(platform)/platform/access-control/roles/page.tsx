@@ -28,7 +28,7 @@ export default function PlatformRolesPage() {
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.ROLE_READ} fallback={<PermissionDenied />}>
       <PageHeader title={t("title")} description={t("description")} />
 
-      <div className="p-6">
+      <div className="p-3 sm:p-4">
         <div className="mb-4 flex items-center justify-end gap-2">
           <SyncPermissionCatalogButton />
           <CreatePlatformRoleDialog />

@@ -22,7 +22,7 @@ export default function PlatformSettingsPage() {
     <PlatformPermissionGate permission={PLATFORM_PERMISSIONS.SETTINGS_READ} fallback={<PermissionDenied />}>
       <PageHeader title="Platform Settings" description="Manage platform-wide branding." />
 
-      <div className="max-w-2xl space-y-6 p-6">
+      <div className="max-w-2xl space-y-3 p-3 sm:space-y-4 sm:p-4">
         {isLoading ? (
           <Skeleton className="h-40 w-full" />
         ) : error ? (
