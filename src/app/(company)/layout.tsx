@@ -11,8 +11,7 @@
 // import { CompanyContextGate } from "@/features/company/components/company-context-gate";
 // import { CashDrawerStatusIndicator } from "@/features/cash-drawer/components/cash-drawer-status-indicator";
 // import { NotificationBell } from "@/features/notification/components/notification-bell";
-// import { useOfflineSaleSync } from "@/features/pos/hooks/use-offline-sale-sync";
-// import { ProfileMenu } from "@/components/layout/profile-menu";
+// // import { ProfileMenu } from "@/components/layout/profile-menu";
 // import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 // import { CompanyBrandMark } from "@/components/layout/company-brand-mark";
 // import { Button } from "@/components/ui/button";
@@ -32,8 +31,7 @@
 // export default function CompanyLayout({ children }: { children: React.ReactNode }) {
 //   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 //   const { company } = useCurrentCompany();
-//   useOfflineSaleSync(company?.companyId);
-
+// 
 //   return (
 //     <AuthGate>
 //       <ScopeGuard requiredScope="company">
@@ -93,7 +91,6 @@ import { AppSidebar } from "@/components/layout/app-sidebar";
 import { CompanyContextGate } from "@/features/company/components/company-context-gate";
 import { CashDrawerStatusIndicator } from "@/features/cash-drawer/components/cash-drawer-status-indicator";
 import { NotificationBell } from "@/features/notification/components/notification-bell";
-import { useOfflineSaleSync } from "@/features/pos/hooks/use-offline-sale-sync";
 import { ProfileMenu } from "@/components/layout/profile-menu";
 import { useCurrentCompany } from "@/features/company/hooks/use-current-company";
 import { CompanyBrandMark } from "@/components/layout/company-brand-mark";
@@ -101,10 +98,18 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 import { companyNavItems } from "./nav-items";
+import { useSingleCompanyMode } from "@/features/app-config/hooks/use-single-company-mode";
 
 export default function CompanyLayout({ children }: { children: React.ReactNode }) {
   const { company } = useCurrentCompany();
-  useOfflineSaleSync(company?.companyId);
+
+  // One-company edition: there is nothing to subscribe to, so the billing menu is not shown.
+  // It stays hidden until the setting has loaded, so it never flashes up and vanishes.
+  const { isSingleCompany, isReady: isModeKnown } = useSingleCompanyMode();
+  const navItems =
+    isSingleCompany || !isModeKnown
+      ? companyNavItems.filter((item) => item.labelKey !== "subscriptionBilling")
+      : companyNavItems;
 
   // একটাই mobile state
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -121,7 +126,7 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
         <div className="min-h-screen bg-background">
           <div className="md:fixed md:inset-y-0 md:left-0 md:z-40">
             <AppSidebar
-              items={companyNavItems}
+              items={navItems}
               brand={brand}
               mobileOpen={mobileOpen}
               onMobileClose={() => setMobileOpen(false)}

@@ -32,8 +32,6 @@ import { useListUnitsQuery } from "@/features/unit/api/unit.api";
 import { useCart } from "@/features/pos/hooks/use-cart";
 import { useTender } from "@/features/pos/hooks/use-tender";
 import { useOnlineStatus } from "@/features/pos/hooks/use-online-status";
-import { usePendingSalesCount } from "@/features/pos/hooks/use-pending-sales-count";
-import { queuePendingSale } from "@/features/pos/lib/offline-sale-queue";
 import { ProductSearchInput } from "@/features/pos/components/product-search-input";
 import { PosInsightsBar } from "@/features/pos/components/pos-insights-bar";
 import { VariantSelectDialog } from "@/features/pos/components/variant-select-dialog";
@@ -61,7 +59,6 @@ export default function PosPage() {
 
   const { session: openCashDrawerSession } = useMyOpenSession(companyId);
   const isOnline = useOnlineStatus();
-  const { count: pendingSalesCount, refresh: refreshPendingSalesCount } = usePendingSalesCount(companyId);
 
   const { locations } = useAssignedLocations(companyId);
   const salesLocations = locations.filter((location) => location.isSalesEnabled);
@@ -158,34 +155,9 @@ export default function PosPage() {
     };
   }
 
-  async function queueSaleOffline() {
-    const idempotencyKey = crypto.randomUUID();
-    await queuePendingSale({
-      idempotencyKey,
-      companyId: companyId!,
-      payload: { ...buildSalePayload(), idempotencyKey },
-      createdAt: new Date().toISOString(),
-    });
-    toast.success(t("offline.queuedMessage"));
-    clearCart();
-    tender.reset();
-    void refreshPendingSalesCount();
-  }
-
   async function submitSale() {
-    // Offline path — never touches the network. `navigator.onLine` is the
-    // fast, proactive signal (skips the request entirely when already
-    // known offline), but it's not the ground truth: some browsers/DevTools
-    // network-throttling configurations block requests without ever
-    // flipping it, and on a real device a flaky connection can report
-    // "online" right up until the request itself fails. So the reactive
-    // check below (a FETCH_ERROR/TIMEOUT_ERROR from the actual attempt) is
-    // the real fallback that guarantees a sale is never silently lost —
-    // it queues instead of just showing an error toast. A genuine business
-    // rejection (insufficient stock, validation, etc.) still surfaces
-    // normally, unchanged from before.
     if (!isOnline) {
-      await queueSaleOffline();
+      toast.error(t("offline.description"));
       return;
     }
 
@@ -196,10 +168,6 @@ export default function PosPage() {
 
     if ("error" in result) {
       const normalized = normalizeApiError(result.error);
-      if (normalized.status === "FETCH_ERROR" || normalized.status === "TIMEOUT_ERROR") {
-        await queueSaleOffline();
-        return;
-      }
       toast.error(resolveBusinessErrorMessage(normalized.message, locale));
       return;
     }
@@ -231,7 +199,7 @@ export default function PosPage() {
     void submitSale();
   }
 
-  const canSubmit = lines.length > 0 && !!locationId && Math.abs(totalAmount - entered) < 0.01;
+  const canSubmit = isOnline && lines.length > 0 && !!locationId && Math.abs(totalAmount - entered) < 0.01;
 
   return (
     <CompanyPermissionGate permission={COMPANY_PERMISSIONS.SALE_CREATE} fallback={<PermissionDenied />}>
@@ -243,12 +211,6 @@ export default function PosPage() {
             <Alert variant="destructive" className="px-2.5 py-1.5 text-xs">
               <AlertTitle>{t("offline.badge")}</AlertTitle>
               <AlertDescription>{t("offline.description")}</AlertDescription>
-            </Alert>
-          )}
-          {pendingSalesCount > 0 && (
-            <Alert className="px-2.5 py-1.5 text-xs">
-              <AlertTitle>{t("offline.pendingTitle")}</AlertTitle>
-              <AlertDescription>{t("offline.pendingCount", { count: pendingSalesCount })}</AlertDescription>
             </Alert>
           )}
           {!openCashDrawerSession && (

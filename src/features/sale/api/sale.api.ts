@@ -34,8 +34,6 @@ export interface CreateSalePayload {
   saleDiscountAmount?: number;
   payments: SalePaymentInput[];
   note?: string;
-  /** Sent only when replaying a sale that was queued offline — omit for a normal, real-time sale. */
-  idempotencyKey?: string;
 }
 
 export interface CreateSaleResult {
@@ -91,25 +89,6 @@ export const saleApi = baseApi.injectEndpoints({
       invalidatesTags: ["Sale", "Product", "Dashboard"],
     }),
 
-    approveNeedsReviewSale: builder.mutation<Sale, { companyId: string; id: string }>({
-      query: ({ companyId, id }) => ({
-        url: `/companies/${companyId}/sales/${id}/approve`,
-        method: "POST",
-      }),
-      transformResponse: (response: { data: Sale }) => response.data,
-      invalidatesTags: ["Sale", "Product", "Dashboard"],
-    }),
-
-    rejectNeedsReviewSale: builder.mutation<Sale, { companyId: string; id: string; body: { reason: string } }>({
-      query: ({ companyId, id, body }) => ({
-        url: `/companies/${companyId}/sales/${id}/reject`,
-        method: "POST",
-        body,
-      }),
-      transformResponse: (response: { data: Sale }) => response.data,
-      invalidatesTags: ["Sale", "Customer", "Dashboard"],
-    }),
-
     createSaleReturn: builder.mutation<SaleReturn, { companyId: string; id: string; body: CreateSaleReturnPayload }>({
       query: ({ companyId, id, body }) => ({
         url: `/companies/${companyId}/sales/${id}/returns`,
@@ -136,8 +115,6 @@ export const {
   useGetSaleQuery,
   useCreateSaleMutation,
   useVoidSaleMutation,
-  useApproveNeedsReviewSaleMutation,
-  useRejectNeedsReviewSaleMutation,
   useCreateSaleReturnMutation,
   useListSaleReturnsQuery,
 } = saleApi;

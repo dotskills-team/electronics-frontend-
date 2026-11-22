@@ -20,7 +20,6 @@ import {
   Banknote,
   HandCoins,
   ClipboardEdit,
-  AlertTriangle,
   BarChart3,
   FileSpreadsheet,
   TrendingUp,
@@ -160,12 +159,6 @@ export const companyNavItems: NavItem[] = [
         href: "/company/sales",
         icon: Receipt,
         companyPermission: COMPANY_PERMISSIONS.SALE_READ,
-      },
-      {
-        labelKey: "needsReview",
-        href: "/company/sales/needs-review",
-        icon: AlertTriangle,
-        companyPermission: COMPANY_PERMISSIONS.SALE_VOID,
       },
       {
         labelKey: "cashDrawer",
